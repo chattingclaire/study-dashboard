@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <h1>📚 Study Dashboard</h1>
+            <div class="user-info">
+                <span>Welcome, Student!</span>
+                <button id="musicToggle" class="music-toggle">🎵 Music: ON</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Video Panel -->
+                <section class="video-panel card">
+                    <h2>📺 Educational Videos</h2>
+                    <div class="video-container">
+                        <iframe id="videoPlayer" 
+                                src="https://www.youtube.com/embed/jfKfPfyJRdk" 
+                                frameborder="0" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-list">
+                        <h3>Recommended Videos</h3>
+                        <ul id="videoList">
+                            <li><a href="#" data-video="jfKfPfyJRdk">Lofi Study Music</a></li>
+                            <li><a href="#" data-video="4xDzrJKXOOY">Math Tutorial</a></li>
+                            <li><a href="#" data-video="PkZNo7MFNFg">JavaScript Basics</a></li>
+                            <li><a href="#" data-video="rfscVS0vtbw">Python Full Course</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Progress Charts -->
+                <section class="progress-section card">
+                    <h2>📊 Your Progress</h2>
+                    <div class="chart-container">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Study Time</span>
+                            <span class="stat-value">45h 30m</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Completed Topics</span>
+                            <span class="stat-value">23/30</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Average Score</span>
+                            <span class="stat-value">87%</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Study Session Scheduler -->
+                <section class="scheduler card">
+                    <h2>📅 Study Sessions</h2>
+                    <button class="btn-primary" onclick="showAddSessionModal()">+ Schedule New Session</button>
+                    <div id="sessionsList" class="sessions-list">
+                        <!-- Sessions will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Discussion Forum -->
+                <section class="discussion-forum card">
+                    <h2>💬 Community Discussions</h2>
+                    <button class="btn-primary" onclick="showNewThreadModal()">+ New Thread</button>
+                    <div id="discussionsList" class="discussions-list">
+                        <!-- Discussions will be loaded here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- New Session Modal -->
+    <div id="sessionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('sessionModal')">&times;</span>
+            <h2>Schedule Study Session</h2>
+            <form id="sessionForm">
+                <input type="text" id="sessionTitle" placeholder="Session Title" required>
+                <input type="text" id="sessionSubject" placeholder="Subject" required>
+                <input type="datetime-local" id="sessionStart" required>
+                <input type="datetime-local" id="sessionEnd" required>
+                <textarea id="sessionDescription" placeholder="Description (optional)"></textarea>
+                <button type="submit" class="btn-primary">Schedule Session</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Thread Modal -->
+    <div id="threadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('threadModal')">&times;</span>
+            <h2>Create New Discussion</h2>
+            <form id="threadForm">
+                <input type="text" id="threadTitle" placeholder="Thread Title" required>
+                <input type="text" id="threadAuthor" placeholder="Your Name" required>
+                <textarea id="threadContent" placeholder="What's on your mind?" required></textarea>
+                <button type="submit" class="btn-primary">Post Thread</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="/static/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
